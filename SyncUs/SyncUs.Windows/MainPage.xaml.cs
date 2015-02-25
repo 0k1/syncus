@@ -44,6 +44,11 @@ namespace SyncUs
                     SyncItems.Add(temp);
                 }
                 OutputTextBlock.Text = "Operation Success.";
+                if ((string)(sender as Button).Content == "Load Local")
+                    LocalStatusBox.Text = folder.Path + "\t loaded";
+                else
+                    RemoteStatusBox.Text = folder.Path + "\t loaded";
+
             }
             else
             {
@@ -54,9 +59,14 @@ namespace SyncUs
             {
                 output = output + "\n" + JsonConvert.SerializeObject(item);
             }
-                StorageFile Config = await folder.CreateFileAsync("config.json",CreationCollisionOption.OpenIfExists);
-                await FileIO.WriteTextAsync(Config, output);
-           
+            StorageFile Config = await folder.CreateFileAsync("config.json", CreationCollisionOption.OpenIfExists);
+            await FileIO.WriteTextAsync(Config, output);
+
+        }
+
+        private void SyncButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

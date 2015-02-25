@@ -1,18 +1,58 @@
-﻿<Page
-    x:Class="SyncUs.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SyncUs"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="SyncUs.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SyncUs"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
-   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="Load"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Content="Load"
-                Click="Load_Click" />
-        <TextBlock x:Name="OutputTextBlock" HorizontalAlignment="Right"  Margin="0,100,0,0" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Height="300"
+              Width="700">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Local Drive"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <Button x:Name="Load"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Load Local"
+                    Click="Load_Click" />
+            <TextBlock HorizontalAlignment="Center"
+                       Foreground="White"
+                       VerticalAlignment="Bottom"
+                       x:Name="LocalStatusBox" />
+            <TextBlock Text="Local Drive"
+                       Grid.Column="1"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <Button x:Name="LoadRemote"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Load Remote"
+                    Click="Load_Click" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Foreground="White"
+                       Grid.Column="1"
+                       x:Name="RemoteStatusBox" />
+            <Button x:Name="SyncButton"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Click="SyncButton_Click"
+                    Content="Sync" />
+        </Grid>
+        <TextBlock x:Name="OutputTextBlock"
+                   HorizontalAlignment="Right"
+                   Margin="0,100,0,0" />
     </Grid>
 </Page>
