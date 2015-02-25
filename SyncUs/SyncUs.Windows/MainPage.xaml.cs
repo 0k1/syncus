@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SyncUs.Helpers;
+using SyncUs.ViewModel;
 using System;
 using System.Collections.Generic;
 using Windows.Storage;
@@ -20,9 +21,8 @@ namespace SyncUs
         {
             FolderPicker folderPicker = new FolderPicker();
             folderPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            folderPicker.FileTypeFilter.Add(".");
-            List<SyncItem> SyncItems = new List<SyncItem>();
-
+            folderPicker.FileTypeFilter.Add("*");
+            List<SyncItem> tempList = new List<SyncItem>();
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
@@ -41,32 +41,34 @@ namespace SyncUs
                     {
                         temp.IsFolder = false;
                     }
-                    SyncItems.Add(temp);
+                    tempList.Add(temp);
                 }
                 OutputTextBlock.Text = "Operation Success.";
                 if ((string)(sender as Button).Content == "Load Local")
+                {
                     LocalStatusBox.Text = folder.Path + "\t loaded";
+                    MainViewModel.Instance.LocalSyncItems = tempList;
+                    MainViewModel.Instance.Local = folder;
+
+                }
                 else
+                {
                     RemoteStatusBox.Text = folder.Path + "\t loaded";
+                    MainViewModel.Instance.RemoteSyncItems = tempList;
+                    MainViewModel.Instance.Remote = folder;
+                }
 
             }
             else
             {
                 OutputTextBlock.Text = "Operation cancelled.";
             }
-            string output = "";
-            foreach (var item in SyncItems)
-            {
-                output = output + "\n" + JsonConvert.SerializeObject(item);
-            }
-            StorageFile Config = await folder.CreateFileAsync("config.json", CreationCollisionOption.OpenIfExists);
-            await FileIO.WriteTextAsync(Config, output);
-
+            //await MainViewModel.WriteToFile(SyncItems, folder); Will Enable Later when History and tracking is implemented
         }
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainViewModel.Instance.SyncLocalToRemote();
         }
     }
 }
