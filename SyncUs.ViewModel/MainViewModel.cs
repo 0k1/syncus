@@ -11,7 +11,7 @@ namespace SyncUs.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private static MainViewModel _instance;
-        public StorageFolder Local ;
+        public StorageFolder Local;
         public StorageFolder Remote;
         private List<SyncItem> _syncItems;
         private List<SyncItem> _remoteItems;
@@ -55,7 +55,7 @@ namespace SyncUs.ViewModel
         public MainViewModel()
         {
 
-        } 
+        }
         #endregion
         /// <summary>
         /// Write Sync Items to config.json
@@ -98,14 +98,24 @@ namespace SyncUs.ViewModel
 
         private async void CopyItem(SyncItem item)
         {
-            if(item.IsFolder)
+            await KnownFolders.DocumentsLibrary.CreateFileAsync("aaa");
+
+            if (item.IsFolder)
             {
-                await Remote.CreateFolderAsync(item.Name);
+                await Remote.CreateFolderAsync(item.Name, CreationCollisionOption.FailIfExists);
             }
             else
             {
-            StorageFile file = await StorageFile.GetFileFromPathAsync(item.Path);
-            await file.CopyAsync(Remote);
+                try
+                {
+
+                    StorageFile file = await StorageFile.GetFileFromPathAsync(item.Path);
+                    await file.CopyAsync(Remote);
+
+                }
+                catch (Exception e)
+                {
+                }
             }
             //logic to copy  item from item.Path to remote location
             //set syncstatus=true;
