@@ -68,7 +68,10 @@ namespace SyncUs
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)
         {
+            SyncButton.IsEnabled = false;
             MainViewModel.Instance.SyncLocalToRemote();
+            SyncButton.IsEnabled = true;
+            OutputTextBlock.Text += "\n Sync Done";
         }
     }
 }

@@ -76,17 +76,13 @@ namespace SyncUs.ViewModel
 
         public void SyncLocalToRemote()
         {
-            CompareAndList();
-        }
-
-        private void CompareAndList()
-        {
             foreach (var item in LocalSyncItems)
             {
+                if (item.SyncStatus)
+                    continue;
                 if (RemoteSyncItems.Contains(item))
                 {
                     item.SyncStatus = true;
-                    continue;
                 }
                 else
                 {
@@ -95,11 +91,12 @@ namespace SyncUs.ViewModel
 
             }
         }
-
+        /// <summary>
+        /// logic to copy  item from item.Path to remote location also sets syncstatus=true;
+        /// </summary>
+        /// <param name="item"></param>
         private async void CopyItem(SyncItem item)
         {
-            await KnownFolders.DocumentsLibrary.CreateFileAsync("aaa");
-
             if (item.IsFolder)
             {
                 await Remote.CreateFolderAsync(item.Name, CreationCollisionOption.FailIfExists);
@@ -111,14 +108,13 @@ namespace SyncUs.ViewModel
 
                     StorageFile file = await StorageFile.GetFileFromPathAsync(item.Path);
                     await file.CopyAsync(Remote);
-
+                    item.SyncStatus = true;
                 }
                 catch (Exception e)
                 {
+                    System.Diagnostics.Debugger.Break();
                 }
             }
-            //logic to copy  item from item.Path to remote location
-            //set syncstatus=true;
         }
     }
 }

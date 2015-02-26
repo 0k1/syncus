@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>a39041ae-3932-4a81-a3a8-dd1be8e56341</ProjectGuid>
+    <ProjectGuid>{A39041AE-3932-4A81-A3A8-DD1BE8E56341}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SyncUs</RootNamespace>

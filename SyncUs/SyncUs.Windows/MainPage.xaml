@@ -19,6 +19,13 @@
                        Foreground="White"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center" />
+            <TextBlock Text="Windows Only allows us to access your Music Pictures and Video Library. So select one in these :)"
+                       Foreground="White"
+                       Margin="0,30,0,0"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       />
             <Button x:Name="Load"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -28,9 +35,16 @@
                        Foreground="White"
                        VerticalAlignment="Bottom"
                        x:Name="LocalStatusBox" />
-            <TextBlock Text="Local Drive"
+            <TextBlock Text="Remote Drive"
                        Grid.Column="1"
                        Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Pick anywhere :)"
+                       Foreground="White"
+                       Margin="0,30,0,0"
+                       TextWrapping="Wrap"
+                       Grid.Column="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center" />
             <Button x:Name="LoadRemote"
