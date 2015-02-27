@@ -23,6 +23,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="picturesLibrary" />
+    <Capability Name="removableStorage"/>
     <Capability Name="videosLibrary" />
     <Capability Name="musicLibrary" />
   </Capabilities>

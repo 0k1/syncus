@@ -63,7 +63,7 @@ namespace SyncUs
             {
                 OutputTextBlock.Text = "Operation cancelled.";
             }
-            //await MainViewModel.WriteToFile(SyncItems, folder); Will Enable Later when History and tracking is implemented
+            await MainViewModel.WriteToFile(tempList, folder); //Will Enable Later when History and tracking is implemented
         }
 
         private void SyncButton_Click(object sender, RoutedEventArgs e)

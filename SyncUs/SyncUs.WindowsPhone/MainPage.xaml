@@ -9,6 +9,60 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <TextBlock Text="Local Drive"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Windows Only allows us to access your Music Pictures and Video Library. So select one in these :)"
+                       Foreground="White"
+                       Margin="0,30,0,0"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <Button x:Name="Load"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Load Local"
+                    Click="Load_Click" />
+            <TextBlock HorizontalAlignment="Center"
+                       Foreground="White"
+                       VerticalAlignment="Bottom"
+                       x:Name="LocalStatusBox" />
+            <TextBlock Text="Remote Drive"
+                       Grid.Column="1"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="Pick anywhere :)"
+                       Foreground="White"
+                       Margin="0,30,0,0"
+                       TextWrapping="Wrap"
+                       Grid.Column="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center" />
+            <Button x:Name="LoadRemote"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Load Remote"
+                    Click="Load_Click" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Foreground="White"
+                       Grid.Column="1"
+                       x:Name="RemoteStatusBox" />
+            <Button x:Name="SyncButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Click="SyncButton_Click"
+                    Content="Sync" />
+            <TextBlock x:Name="OutputTextBlock"
+                       HorizontalAlignment="Right"
+                       Margin="0,100,0,0" />
+            <TextBlock x:Name="MessageBox"
+                       HorizontalAlignment="Right"
+                       Margin="0,100,0,0" />
+        </StackPanel>
     </Grid>
 </Page>
